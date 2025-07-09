@@ -4,10 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Product } from "@/types";
 
+// Props interface for ProductCard component
 interface ProductCardProps {
   product: Product;
 }
 
+// Product card component - displays product info with hover effects
 const ProductCard = ({ product }: ProductCardProps) => {
   // Use the product ID as the slug for the URL
   const productSlug = product._id;
@@ -30,9 +32,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
       {/* Text content below the image */}
       <div className="p-4">
+        {/* Product name */}
         <h3 className="text-lg font-bold text-light-text dark:text-dark-text">
           {product.name}
         </h3>
+
+        {/* Product category */}
         <p className="text-sm text-gray-500 dark:text-gray-400">
           {product.category}
         </p>

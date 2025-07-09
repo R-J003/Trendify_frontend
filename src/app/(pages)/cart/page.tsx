@@ -4,11 +4,15 @@
 import { useState, useEffect } from "react";
 import { useCart } from "@/hooks/useCart";
 import CartItem from "@/components/cart/CartItem";
-import OrderSummary from "@/components/cart/OrderSummary"; // Correct default import
+import OrderSummary from "@/components/cart/OrderSummary";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle } from "lucide-react"; // Import CheckCircle for the modal icon
-import Confetti from "react-confetti"; // Import the confetti component
+import { ArrowLeft, CheckCircle } from "lucide-react"; 
+import Confetti from "react-confetti"; 
 
+/**
+  CartPage component displays the user's shopping cart.
+  It shows cart items, allows checkout, and displays a success message with confetti on checkout.
+ */
 export default function CartPage() {
   const { cartItems, clearCart } = useCart();
   const [isCheckingOut, setIsCheckingOut] = useState(false); // State to control confetti/modal

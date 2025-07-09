@@ -1,5 +1,6 @@
 // frontend/src/components/home/CommunitySection.tsx
 
+// Community section component - displays call-to-action with gradient background
 const CommunitySection = () => {
   return (
     <section className="relative my-16 rounded-2xl overflow-hidden shadow-2xl">
@@ -39,6 +40,7 @@ const CommunitySection = () => {
             </linearGradient>
           </defs>
 
+          {/* Apply gradient backgrounds */}
           <rect width="100%" height="100%" fill="url(#communityGradient)" />
           <rect width="100%" height="100%" fill="url(#overlayGradient)" />
         </svg>

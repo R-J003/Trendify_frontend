@@ -4,6 +4,7 @@ import Link from "next/link";
 
 // Custom brand icons using Simple Icons SVG data
 
+// X (Twitter) icon component
 const XIcon = ({ className = "" }) => (
   <svg
     width="20"
@@ -16,6 +17,7 @@ const XIcon = ({ className = "" }) => (
   </svg>
 );
 
+// Instagram icon component
 const InstagramIcon = ({ className = "" }) => (
   <svg
     width="20"
@@ -28,6 +30,7 @@ const InstagramIcon = ({ className = "" }) => (
   </svg>
 );
 
+// Facebook icon component
 const FacebookIcon = ({ className = "" }) => (
   <svg
     width="20"
@@ -40,11 +43,14 @@ const FacebookIcon = ({ className = "" }) => (
   </svg>
 );
 
+// Footer component - site-wide footer with links and social media
 const Footer = () => {
   return (
     <footer className="bg-light-background dark:bg-dark-background border-t border-light-secondary dark:border-dark-secondary">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Footer content grid - responsive layout */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center md:text-left mb-8">
+          {/* Company links section */}
           <div>
             <h3 className="font-bold mb-2">Company</h3>
             <ul>
@@ -66,6 +72,8 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+          
+          {/* Support links section */}
           <div>
             <h3 className="font-bold mb-2">Support</h3>
             <ul>
@@ -87,10 +95,12 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+          
+          {/* Social media section */}
           <div className="col-span-2 md:col-span-2 flex flex-col items-center md:items-end">
             <h3 className="font-bold mb-2">Follow Us</h3>
             <div className="flex gap-4 flex-wrap justify-center md:justify-end">
-              {/* Existing Lucide icons */}
+              {/* Social media icons with hover effects */}
               <Link href="https://x.com/" aria-label="Twitter">
                 <XIcon className="h-5 w-5 hover:opacity-75 transition-opacity" />
               </Link>
@@ -103,6 +113,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        
+        {/* Copyright section */}
         <div className="text-center text-sm text-gray-500 dark:text-gray-400 border-t border-light-secondary dark:border-dark-secondary pt-6">
           <p>© {new Date().getFullYear()} Trendify. All rights reserved.</p>
         </div>
