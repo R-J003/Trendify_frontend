@@ -27,7 +27,8 @@ type ProductUpdateData = Partial<ProductCreationData>;
  * @constant {string} API_URL
  */
 const API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "https://trendify-backend-ehwe.onrender.com";
+  process.env.NEXT_PUBLIC_API_URL ||
+  "https://trendify-backend-ehwe.onrender.com";
 
 /**
  * Axios instance with pre-configured settings for all API requests.
