@@ -1,7 +1,19 @@
-import type { NextConfig } from "next";
+// frontend/next.config.mjs
 
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // --- ADD THIS ENTIRE 'images' BLOCK ---
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
+  // ------------------------------------
 };
 
 export default nextConfig;
