@@ -1,18 +1,20 @@
-// frontend/src/components/admin/AdminProductList.tsx
+// frontend/src/components/manage-products/ManageProductList.tsx
 import { Product } from "@/types";
 import Image from "next/image";
 
-interface AdminProductListProps {
+// Renamed for consistency
+interface ManageProductListProps {
   products: Product[];
   onEdit: (product: Product) => void;
   onDelete: (productId: string) => void;
 }
 
-const AdminProductList = ({
+// Renamed for consistency
+const ManageProductList = ({
   products,
   onEdit,
   onDelete,
-}: AdminProductListProps) => {
+}: ManageProductListProps) => {
   return (
     <div className="bg-light-card dark:bg-dark-card rounded-lg shadow">
       <ul className="divide-y divide-light-secondary dark:divide-dark-secondary">
@@ -57,4 +59,5 @@ const AdminProductList = ({
   );
 };
 
-export default AdminProductList;
+// Renamed for consistency
+export default ManageProductList;

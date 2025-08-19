@@ -1,5 +1,5 @@
-// frontend/src/app/(pages)/admin/page.tsx
-"use client"; // This page will be interactive
+// frontend/src/app/(pages)/manage-products/page.tsx
+"use client";
 
 import { useState, useEffect } from "react";
 import { Product } from "@/types";
@@ -9,15 +9,15 @@ import {
   updateProduct,
   deleteProduct,
 } from "@/lib/api";
-import ProductForm from "@/components/admin/ProductForm";
-import AdminProductList from "@/components/admin/AdminProductList";
+import ProductForm from "@/components/manage-products/ProductForm";
+import ManageProductList from "@/components/manage-products/ManageProductList";
 
-export default function AdminPage() {
+export default function ManageProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // New state for loading
 
-  // Fetch all products on component mount
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -35,30 +35,38 @@ export default function AdminPage() {
   const handleDelete = async (productId: string) => {
     if (confirm("Are you sure you want to delete this product?")) {
       await deleteProduct(productId);
-      fetchProducts(); // Refresh the list
+      fetchProducts();
     }
   };
 
   const handleCreateNew = () => {
-    setEditingProduct(null); // Clear any editing state
+    setEditingProduct(null);
     setIsFormVisible(true);
   };
 
   const handleFormSubmit = async (productData: Omit<Product, "_id">) => {
-    if (editingProduct) {
-      await updateProduct(editingProduct._id, productData);
-    } else {
-      await createProduct(productData);
+    setIsSubmitting(true); // Set loading state to true
+    try {
+      if (editingProduct) {
+        await updateProduct(editingProduct._id, productData);
+      } else {
+        await createProduct(productData);
+      }
+      fetchProducts();
+      setIsFormVisible(false);
+      setEditingProduct(null);
+    } catch (error) {
+      console.error("Failed to submit form:", error);
+      // Optionally, show an error message to the user here
+    } finally {
+      setIsSubmitting(false); // Set loading state to false
     }
-    fetchProducts(); // Refresh the list
-    setIsFormVisible(false); // Hide the form
-    setEditingProduct(null);
   };
 
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Admin Dashboard</h1>
+        <h1 className="text-3xl font-bold">Manage Products</h1>
         {!isFormVisible && (
           <button
             onClick={handleCreateNew}
@@ -74,9 +82,10 @@ export default function AdminPage() {
           product={editingProduct}
           onSubmit={handleFormSubmit}
           onCancel={() => setIsFormVisible(false)}
+          isSubmitting={isSubmitting} // Pass the loading state to the form
         />
       ) : (
-        <AdminProductList
+        <ManageProductList
           products={products}
           onEdit={handleEdit}
           onDelete={handleDelete}
